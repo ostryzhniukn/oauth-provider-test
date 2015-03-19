@@ -31,7 +31,8 @@ public class ServletInitializer extends AbstractDispatcherServletInitializer {
 	@Override
 	protected WebApplicationContext createServletApplicationContext() {
 		AnnotationConfigWebApplicationContext context = new AnnotationConfigWebApplicationContext();
-		context.scan(ClassUtils.getPackageName(getClass()));
+		//context.scan(ClassUtils.getPackageName(getClass()));
+		context.scan("ostryzhniukn.oauth2.provider");
 		return context;
 	}
 

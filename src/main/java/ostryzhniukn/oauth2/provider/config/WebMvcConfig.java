@@ -32,10 +32,10 @@ import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 @EnableWebMvc
 public class WebMvcConfig extends WebMvcConfigurerAdapter {
 
-    @Bean
-    public ResourceController resourceController(){
-        return new ResourceController();
-    }
+//    @Bean
+//    public ResourceController resourceController(){
+//        return new ResourceController();
+//    }
 
 	@Bean
 	public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
