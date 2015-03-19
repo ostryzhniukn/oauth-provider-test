@@ -31,7 +31,7 @@ public class PhotoController {
     @RequestMapping("/resource")
     @ResponseBody
     public String resource(){
-        return "Sparklr2 resource!";
+        return "Oauth2 provider resource!";
     }
 
 	@RequestMapping("/photos/{photoId}")
