@@ -1,4 +1,4 @@
-package org.springframework.security.oauth.examples.sparklr.config;
+package ostryzhniukn.oauth2.provider.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

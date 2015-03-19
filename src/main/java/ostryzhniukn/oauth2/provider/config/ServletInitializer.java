@@ -11,7 +11,7 @@
  * specific language governing permissions and limitations under the License.
  */
 
-package org.springframework.security.oauth.examples.sparklr.config;
+package ostryzhniukn.oauth2.provider.config;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;

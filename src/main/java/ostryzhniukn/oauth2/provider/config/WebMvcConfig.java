@@ -1,4 +1,4 @@
-package org.springframework.security.oauth.examples.sparklr.config;
+package ostryzhniukn.oauth2.provider.config;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -9,14 +9,14 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.http.MediaType;
-import org.springframework.security.oauth.examples.sparklr.PhotoInfo;
-import org.springframework.security.oauth.examples.sparklr.PhotoService;
-import org.springframework.security.oauth.examples.sparklr.impl.PhotoServiceImpl;
-import org.springframework.security.oauth.examples.sparklr.mvc.AccessConfirmationController;
-import org.springframework.security.oauth.examples.sparklr.mvc.AdminController;
-import org.springframework.security.oauth.examples.sparklr.mvc.PhotoController;
-import org.springframework.security.oauth.examples.sparklr.mvc.PhotoServiceUserController;
-import org.springframework.security.oauth.examples.sparklr.oauth.SparklrUserApprovalHandler;
+import ostryzhniukn.oauth2.provider.PhotoInfo;
+import ostryzhniukn.oauth2.provider.PhotoService;
+import ostryzhniukn.oauth2.provider.impl.PhotoServiceImpl;
+import ostryzhniukn.oauth2.provider.mvc.AccessConfirmationController;
+import ostryzhniukn.oauth2.provider.mvc.AdminController;
+import ostryzhniukn.oauth2.provider.mvc.PhotoController;
+import ostryzhniukn.oauth2.provider.mvc.PhotoServiceUserController;
+import ostryzhniukn.oauth2.provider.oauth.SparklrUserApprovalHandler;
 import org.springframework.security.oauth2.provider.ClientDetailsService;
 import org.springframework.security.oauth2.provider.approval.ApprovalStore;
 import org.springframework.security.oauth2.provider.token.ConsumerTokenServices;

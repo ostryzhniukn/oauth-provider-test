@@ -1,4 +1,4 @@
-package org.springframework.security.oauth.examples.sparklr.mvc;
+package ostryzhniukn.oauth2.provider.mvc;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -11,8 +11,8 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.oauth.examples.sparklr.PhotoInfo;
-import org.springframework.security.oauth.examples.sparklr.PhotoService;
+import ostryzhniukn.oauth2.provider.PhotoInfo;
+import ostryzhniukn.oauth2.provider.PhotoService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;

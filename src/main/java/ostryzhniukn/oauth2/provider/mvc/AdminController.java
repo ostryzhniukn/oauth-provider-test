@@ -1,4 +1,4 @@
-package org.springframework.security.oauth.examples.sparklr.mvc;
+package ostryzhniukn.oauth2.provider.mvc;
 
 import java.security.Principal;
 import java.util.ArrayList;
@@ -9,7 +9,7 @@ import java.util.Map;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.AccessDeniedException;
-import org.springframework.security.oauth.examples.sparklr.oauth.SparklrUserApprovalHandler;
+import ostryzhniukn.oauth2.provider.oauth.SparklrUserApprovalHandler;
 import org.springframework.security.oauth2.common.DefaultOAuth2AccessToken;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;

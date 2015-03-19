@@ -1,4 +1,4 @@
-package org.springframework.security.oauth.examples.sparklr;
+package ostryzhniukn.oauth2.provider;
 
 /**
  * Photo information.

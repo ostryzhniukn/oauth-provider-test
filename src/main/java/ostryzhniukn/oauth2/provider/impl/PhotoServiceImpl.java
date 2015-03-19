@@ -1,4 +1,4 @@
-package org.springframework.security.oauth.examples.sparklr.impl;
+package ostryzhniukn.oauth2.provider.impl;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -10,8 +10,8 @@ import java.util.List;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.oauth.examples.sparklr.PhotoInfo;
-import org.springframework.security.oauth.examples.sparklr.PhotoService;
+import ostryzhniukn.oauth2.provider.PhotoInfo;
+import ostryzhniukn.oauth2.provider.PhotoService;
 
 /**
  * Basic implementation for the photo service.

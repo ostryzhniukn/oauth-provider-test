@@ -1,4 +1,4 @@
-package org.springframework.security.oauth.examples.sparklr;
+package ostryzhniukn.oauth2.provider;
 
 /**
  * Photo service user information - added to enable user information to be available to Spring Social client

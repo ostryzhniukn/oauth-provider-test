@@ -1,8 +1,8 @@
-package org.springframework.security.oauth.examples.sparklr.mvc;
+package ostryzhniukn.oauth2.provider.mvc;
 
 import java.security.Principal;
 
-import org.springframework.security.oauth.examples.sparklr.PhotoServiceUser;
+import ostryzhniukn.oauth2.provider.PhotoServiceUser;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;

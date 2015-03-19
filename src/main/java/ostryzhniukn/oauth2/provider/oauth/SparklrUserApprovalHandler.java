@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.springframework.security.oauth.examples.sparklr.oauth;
+package ostryzhniukn.oauth2.provider.oauth;
 
 import java.util.Collection;
 
