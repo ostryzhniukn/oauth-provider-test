@@ -4,6 +4,7 @@ import java.security.Principal;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.oauth2.common.util.OAuth2Utils;
 import org.springframework.security.oauth2.provider.AuthorizationRequest;
 import org.springframework.security.oauth2.provider.ClientDetails;
@@ -25,8 +26,10 @@ import org.springframework.web.servlet.ModelAndView;
 @SessionAttributes("authorizationRequest")
 public class AccessConfirmationController {
 
+    @Autowired
 	private ClientDetailsService clientDetailsService;
 
+    @Autowired
 	private ApprovalStore approvalStore;
 
 	@RequestMapping("/oauth/confirm_access")

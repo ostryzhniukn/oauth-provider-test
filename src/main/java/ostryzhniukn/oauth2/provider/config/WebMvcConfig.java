@@ -3,6 +3,7 @@ package ostryzhniukn.oauth2.provider.config;
 import java.util.Arrays;
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.http.MediaType;
@@ -20,13 +21,14 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 
 @Configuration
+@ComponentScan(basePackages = {"ostryzhniukn.oauth2.provider"})
 @EnableWebMvc
 public class WebMvcConfig extends WebMvcConfigurerAdapter {
 
-    @Bean
-    public ResourceController resourceController(){
-        return new ResourceController();
-    }
+//    @Bean
+//    public ResourceController resourceController(){
+//        return new ResourceController();
+//    }
 
 	@Bean
 	public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
@@ -52,14 +54,14 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
 		return contentViewResolver;
 	}
 
-	@Bean
-	public AccessConfirmationController accessConfirmationController(ClientDetailsService clientDetailsService,
-			ApprovalStore approvalStore) {
-		AccessConfirmationController accessConfirmationController = new AccessConfirmationController();
-		accessConfirmationController.setClientDetailsService(clientDetailsService);
-		accessConfirmationController.setApprovalStore(approvalStore);
-		return accessConfirmationController;
-	}
+//	@Bean
+//	public AccessConfirmationController accessConfirmationController(ClientDetailsService clientDetailsService,
+//			ApprovalStore approvalStore) {
+//		AccessConfirmationController accessConfirmationController = new AccessConfirmationController();
+//		accessConfirmationController.setClientDetailsService(clientDetailsService);
+//		accessConfirmationController.setApprovalStore(approvalStore);
+//		return accessConfirmationController;
+//	}
 
 	@Override
 	public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
