@@ -1,23 +1,14 @@
 package ostryzhniukn.oauth2.provider.config;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.http.MediaType;
-import ostryzhniukn.oauth2.provider.PhotoInfo;
-import ostryzhniukn.oauth2.provider.PhotoService;
-import ostryzhniukn.oauth2.provider.impl.PhotoServiceImpl;
 import ostryzhniukn.oauth2.provider.mvc.*;
-import ostryzhniukn.oauth2.provider.oauth.SparklrUserApprovalHandler;
 import org.springframework.security.oauth2.provider.ClientDetailsService;
 import org.springframework.security.oauth2.provider.approval.ApprovalStore;
-import org.springframework.security.oauth2.provider.token.ConsumerTokenServices;
-import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.web.accept.ContentNegotiationManagerFactoryBean;
 import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.ViewResolver;
@@ -62,61 +53,12 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
 	}
 
 	@Bean
-	public PhotoServiceUserController photoServiceUserController(PhotoService photoService) {
-		PhotoServiceUserController photoServiceUserController = new PhotoServiceUserController();
-		return photoServiceUserController;
-	}
-
-	@Bean
-	public PhotoController photoController(PhotoService photoService) {
-		PhotoController photoController = new PhotoController();
-		photoController.setPhotoService(photoService);
-		return photoController;
-	}
-
-	@Bean
 	public AccessConfirmationController accessConfirmationController(ClientDetailsService clientDetailsService,
 			ApprovalStore approvalStore) {
 		AccessConfirmationController accessConfirmationController = new AccessConfirmationController();
 		accessConfirmationController.setClientDetailsService(clientDetailsService);
 		accessConfirmationController.setApprovalStore(approvalStore);
 		return accessConfirmationController;
-	}
-
-	@Bean
-	public PhotoServiceImpl photoServices() {
-		List<PhotoInfo> photos = new ArrayList<PhotoInfo>();
-		photos.add(createPhoto("1", "marissa"));
-		photos.add(createPhoto("2", "paul"));
-		photos.add(createPhoto("3", "marissa"));
-		photos.add(createPhoto("4", "paul"));
-		photos.add(createPhoto("5", "marissa"));
-		photos.add(createPhoto("6", "paul"));
-
-		PhotoServiceImpl photoServices = new PhotoServiceImpl();
-		photoServices.setPhotos(photos);
-		return photoServices;
-	}
-
-	// N.B. the @Qualifier here should not be necessary (gh-298) but lots of users report needing it.
-	@Bean
-	public AdminController adminController(TokenStore tokenStore,
-			@Qualifier("consumerTokenServices") ConsumerTokenServices tokenServices,
-			SparklrUserApprovalHandler userApprovalHandler) {
-		AdminController adminController = new AdminController();
-		adminController.setTokenStore(tokenStore);
-		adminController.setTokenServices(tokenServices);
-		adminController.setUserApprovalHandler(userApprovalHandler);
-		return adminController;
-	}
-
-	private PhotoInfo createPhoto(String id, String userId) {
-		PhotoInfo photo = new PhotoInfo();
-		photo.setId(id);
-		photo.setName("photo" + id + ".jpg");
-		photo.setUserId(userId);
-		photo.setResourceURL("/org/springframework/security/oauth/examples/sparklr/impl/resources/" + photo.getName());
-		return photo;
 	}
 
 	@Override

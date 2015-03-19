@@ -17,7 +17,6 @@ package ostryzhniukn.oauth2.provider.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Lazy;
@@ -51,7 +50,7 @@ import org.springframework.security.oauth2.provider.token.store.InMemoryTokenSto
 @Configuration
 public class OAuth2ServerConfig {
 
-	private static final String SPARKLR_RESOURCE_ID = "sparklr";
+	private static final String RESOURCE_ID = "provider";
 
 	@Configuration
 	@EnableResourceServer
@@ -59,7 +58,7 @@ public class OAuth2ServerConfig {
 
 		@Override
 		public void configure(ResourceServerSecurityConfigurer resources) {
-			resources.resourceId(SPARKLR_RESOURCE_ID).stateless(false);
+			resources.resourceId(RESOURCE_ID).stateless(false);
 		}
 
 		@Override
@@ -104,60 +103,16 @@ public class OAuth2ServerConfig {
 		@Qualifier("authenticationManagerBean")
 		private AuthenticationManager authenticationManager;
 
-		@Value("${tonr.redirect:http://localhost:8080/tonr2/sparklr/redirect}")
-		private String tonrRedirectUri;
+//		@Value("${tonr.redirect:http://localhost:8080/tonr2/sparklr/redirect}")
+//		private String tonrRedirectUri;
 
 		@Override
 		public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
 
 			// @formatter:off
-			clients.inMemory().withClient("tonr")
-			 			.resourceIds(SPARKLR_RESOURCE_ID)
-			 			.authorizedGrantTypes("authorization_code", "implicit")
-			 			.authorities("ROLE_CLIENT")
-			 			.scopes("read", "write")
-			 			.secret("secret")
-			 		.and()
-			 		.withClient("tonr-with-redirect")
-			 			.resourceIds(SPARKLR_RESOURCE_ID)
-			 			.authorizedGrantTypes("authorization_code", "implicit")
-			 			.authorities("ROLE_CLIENT")
-			 			.scopes("read", "write")
-			 			.secret("secret")
-			 			.redirectUris(tonrRedirectUri)
-			 		.and()
-		 		    .withClient("my-client-with-registered-redirect")
-	 			        .resourceIds(SPARKLR_RESOURCE_ID)
-	 			        .authorizedGrantTypes("authorization_code", "client_credentials")
-	 			        .authorities("ROLE_CLIENT")
-	 			        .scopes("read", "trust")
-	 			        .redirectUris("http://anywhere?key=value")
-		 		    .and()
-	 		        .withClient("my-trusted-client")
- 			            .authorizedGrantTypes("password", "authorization_code", "refresh_token", "implicit")
- 			            .authorities("ROLE_CLIENT", "ROLE_TRUSTED_CLIENT")
- 			            .scopes("read", "write", "trust")
- 			            .accessTokenValiditySeconds(60)
-		 		    .and()
-	 		        .withClient("my-trusted-client-with-secret")
- 			            .authorizedGrantTypes("password", "authorization_code", "refresh_token", "implicit")
- 			            .authorities("ROLE_CLIENT", "ROLE_TRUSTED_CLIENT")
- 			            .scopes("read", "write", "trust")
- 			            .secret("somesecret")
-	 		        .and()
- 		            .withClient("my-less-trusted-client")
-			            .authorizedGrantTypes("authorization_code", "implicit")
-			            .authorities("ROLE_CLIENT")
-			            .scopes("read", "write", "trust")
-     		        .and()
-		            .withClient("my-less-trusted-autoapprove-client")
-		                .authorizedGrantTypes("implicit")
-		                .authorities("ROLE_CLIENT")
-		                .scopes("read", "write", "trust")
-		                .autoApprove(true)
-                    .and()
+			clients.inMemory()
                     .withClient("webapp")
-                        .resourceIds(SPARKLR_RESOURCE_ID)
+                        .resourceIds(RESOURCE_ID)
                         .authorizedGrantTypes("authorization_code", "implicit")
                         .authorities("ROLE_CLIENT")
                         .scopes("read", "write")
@@ -178,7 +133,7 @@ public class OAuth2ServerConfig {
 
 		@Override
 		public void configure(AuthorizationServerSecurityConfigurer oauthServer) throws Exception {
-			oauthServer.realm("sparklr2/client");
+			oauthServer.realm("provider/client");
 		}
 
 	}
