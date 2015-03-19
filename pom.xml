@@ -2,18 +2,22 @@
 
 	<modelVersion>4.0.0</modelVersion>
 
-	<parent>
-		<groupId>org.springframework.security.oauth</groupId>
-		<artifactId>spring-security-oauth-parent</artifactId>
-		<version>2.0.6.RELEASE</version>
-	</parent>
+	<!--<parent>-->
+		<!--<groupId>org.springframework.security.oauth</groupId>-->
+		<!--<artifactId>spring-security-oauth-parent</artifactId>-->
+		<!--<version>2.0.6.RELEASE</version>-->
+	<!--</parent>-->
 
-	<artifactId>sparklr2</artifactId>
+    <groupId>ostryzhniukn</groupId>
+	<artifactId>provider</artifactId>
 	<packaging>war</packaging>
-	<name>OAuth for Spring Security - Sparklr2 (OAuth 2 Provider Example)</name>
+    <version>1.0-SNAPSHOT</version>
+	<name>OAuth 2 Provider Example</name>
 
 	<properties>
-		<m2eclipse.wtp.contextRoot>/sparklr2</m2eclipse.wtp.contextRoot>
+		<m2eclipse.wtp.contextRoot>/provider</m2eclipse.wtp.contextRoot>
+        <spring.version>4.0.9.RELEASE</spring.version>
+        <spring.security.version>3.2.6.RELEASE</spring.security.version>
 	</properties>
 
 	<profiles>
@@ -50,7 +54,7 @@
 									<goal>run</goal>
 								</goals>
 								<configuration>
-									<path>/sparklr2</path>
+									<path>/provider</path>
 									<fork>true</fork>
 								</configuration>
 							</execution>
@@ -62,7 +66,7 @@
 	</profiles>
 
 	<build>
-        <finalName>sparklr2</finalName>
+        <finalName>provider</finalName>
 		<plugins>
 			<plugin>
 				<!--skip deploy (this is just a test module) -->
@@ -115,9 +119,9 @@
 	<dependencies>
 
 		<dependency>
-			<groupId>${project.groupId}</groupId>
+			<groupId>org.springframework.security.oauth</groupId>
 			<artifactId>spring-security-oauth2</artifactId>
-			<version>${project.version}</version>
+			<version>2.0.6.RELEASE</version>
 		</dependency>
 
 		<dependency>
