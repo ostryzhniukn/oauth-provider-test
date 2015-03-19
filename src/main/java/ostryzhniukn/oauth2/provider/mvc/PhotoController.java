@@ -28,12 +28,6 @@ public class PhotoController {
 
 	private PhotoService photoService;
 
-    @RequestMapping("/resource")
-    @ResponseBody
-    public String resource(){
-        return "Oauth2 provider resource!";
-    }
-
 	@RequestMapping("/photos/{photoId}")
 	public ResponseEntity<byte[]> getPhoto(@PathVariable("photoId") String id) throws IOException {
 		InputStream photo = getPhotoService().loadPhoto(id);

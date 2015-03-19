@@ -12,7 +12,7 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Sparklr</title>
+<title>Provider access confirmation</title>
 <link type="text/css" rel="stylesheet"
 	href="../webjars/bootstrap/3.0.3/css/bootstrap.min.css" />
 <script type="text/javascript"
@@ -24,7 +24,7 @@
 <body>
 
 	<div class="container">
-		<h1>Sparklr</h1>
+		<h1>Oauth2 Provider</h1>
 
 		<%
 			if (session.getAttribute(AbstractAuthenticationProcessingFilter.SPRING_SECURITY_LAST_EXCEPTION_KEY) != null

@@ -4,7 +4,7 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Sparklr</title>
+<title>provider login page</title>
 <link type="text/css" rel="stylesheet"
 	href="webjars/bootstrap/3.0.3/css/bootstrap.min.css" />
 <script type="text/javascript" src="webjars/jquery/1.9.0/jquery.min.js"></script>
@@ -16,7 +16,7 @@
 
 	<div class="container">
 
-		<h1>Sparklr</h1>
+		<h1>Provider</h1>
 
 		<c:if test="${not empty param.authentication_error}">
 			<h1>Woops!</h1>

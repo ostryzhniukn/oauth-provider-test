@@ -12,10 +12,7 @@ import org.springframework.http.MediaType;
 import ostryzhniukn.oauth2.provider.PhotoInfo;
 import ostryzhniukn.oauth2.provider.PhotoService;
 import ostryzhniukn.oauth2.provider.impl.PhotoServiceImpl;
-import ostryzhniukn.oauth2.provider.mvc.AccessConfirmationController;
-import ostryzhniukn.oauth2.provider.mvc.AdminController;
-import ostryzhniukn.oauth2.provider.mvc.PhotoController;
-import ostryzhniukn.oauth2.provider.mvc.PhotoServiceUserController;
+import ostryzhniukn.oauth2.provider.mvc.*;
 import ostryzhniukn.oauth2.provider.oauth.SparklrUserApprovalHandler;
 import org.springframework.security.oauth2.provider.ClientDetailsService;
 import org.springframework.security.oauth2.provider.approval.ApprovalStore;
@@ -34,6 +31,11 @@ import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 @Configuration
 @EnableWebMvc
 public class WebMvcConfig extends WebMvcConfigurerAdapter {
+
+    @Bean
+    public ResourceController resourceController(){
+        return new ResourceController();
+    }
 
 	@Bean
 	public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
