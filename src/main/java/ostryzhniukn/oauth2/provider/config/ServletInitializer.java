@@ -33,7 +33,6 @@ public class ServletInitializer extends AbstractDispatcherServletInitializer {
 		AnnotationConfigWebApplicationContext context = new AnnotationConfigWebApplicationContext();
         context.register(WebMvcConfig.class);
 		//context.scan(ClassUtils.getPackageName(getClass())); //don't touch it! (AccessConfirm.Controller throws NullPointerException exception)
-                                        // it should be the only one point where context loads (.scan or @ComponentScan)
 		return context;
 	}
 
