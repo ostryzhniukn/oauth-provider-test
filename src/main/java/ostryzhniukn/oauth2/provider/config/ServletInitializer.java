@@ -16,7 +16,6 @@ package ostryzhniukn.oauth2.provider.config;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 
-import javafx.application.Application;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.server.spring.scope.RequestContextFilter;
 import org.glassfish.jersey.servlet.ServletContainer;
