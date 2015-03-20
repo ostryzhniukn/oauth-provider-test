@@ -13,6 +13,6 @@ public class ResourceController {
     @RequestMapping("/resource")
     @ResponseBody
     public String resource(){
-        return "Oauth2 provider resource!";
+        return "Oauth2 provider mvc resource!";
     }
 }
