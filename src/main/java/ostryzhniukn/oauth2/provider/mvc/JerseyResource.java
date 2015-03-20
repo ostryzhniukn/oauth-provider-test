@@ -72,7 +72,7 @@ public class JerseyResource {
     @GET
     @Produces(MediaType.TEXT_PLAIN)
     public String getHello() {
-        return "jersey resource";
+        return "Provider Jersey resource";
     }
 
 }

@@ -25,6 +25,7 @@ import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.filter.DelegatingFilterProxy;
 import org.springframework.web.servlet.support.AbstractDispatcherServletInitializer;
+import ostryzhniukn.oauth2.provider.mvc.JerseyConfig;
 import ostryzhniukn.oauth2.provider.mvc.JerseyResource;
 
 /**
@@ -37,6 +38,7 @@ public class ServletInitializer extends AbstractDispatcherServletInitializer {
 	protected WebApplicationContext createServletApplicationContext() {
 		AnnotationConfigWebApplicationContext context = new AnnotationConfigWebApplicationContext();
         context.register(WebMvcConfig.class);
+        //context.register(JerseyConfig.class);
 		//context.scan(ClassUtils.getPackageName(getClass())); //don't touch it! (AccessConfirm.Controller throws NullPointerException exception)
 		return context;
 	}
@@ -58,10 +60,11 @@ public class ServletInitializer extends AbstractDispatcherServletInitializer {
 		DelegatingFilterProxy filter = new DelegatingFilterProxy("springSecurityFilterChain");
 		filter.setContextAttribute("org.springframework.web.servlet.FrameworkServlet.CONTEXT.dispatcher");
 		servletContext.addFilter("springSecurityFilterChain", filter).addMappingForUrlPatterns(null, false, "/*");
-
-        DelegatingFilterProxy jerseyFilter = new DelegatingFilterProxy("jerseyFilter");
-        jerseyFilter.setContextAttribute("org.glassfish.jersey.servlet.ServletContainer");
-        servletContext.addFilter("jerseyFilter", jerseyFilter).addMappingForUrlPatterns(null, false, "/rest/*");
+//
+//        DelegatingFilterProxy jerseyFilter = new DelegatingFilterProxy("jerseyFilter");
+//        jerseyFilter.setContextAttribute("org.glassfish.jersey.servlet.ServletContainer");
+//        //jerseyFilter.setServletContext(servletContext);
+//        servletContext.addFilter("jerseyFilter", jerseyFilter).addMappingForUrlPatterns(null, false, "/rest/*");
 
 	}
 	
