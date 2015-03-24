@@ -17,6 +17,7 @@ package ostryzhniukn.oauth2.provider.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Lazy;
@@ -105,8 +106,8 @@ public class OAuth2ServerConfig {
 		@Qualifier("authenticationManagerBean")
 		private AuthenticationManager authenticationManager;
 
-//		@Value("${tonr.redirect:http://localhost:8080/tonr2/sparklr/redirect}")
-//		private String tonrRedirectUri;
+		@Value("${webapp.redirect:http://localhost:8080/webapp/rest/redirect}")
+		private String redirectUri;
 
 		@Override
 		public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
@@ -118,7 +119,14 @@ public class OAuth2ServerConfig {
                         .authorizedGrantTypes("authorization_code", "implicit")
                         .authorities("ROLE_CLIENT")
                         .scopes("read", "write")
-                        .secret("secret");
+                        .secret("secret").and()
+                    .withClient("webapp-with-redirect")
+                        .resourceIds(RESOURCE_ID)
+                        .authorizedGrantTypes("authorization_code", "implicit")
+                        .authorities("ROLE_CLIENT")
+                        .scopes("read", "write")
+                        .secret("secret")
+                        .redirectUris(redirectUri);
 			// @formatter:on
 		}
 
