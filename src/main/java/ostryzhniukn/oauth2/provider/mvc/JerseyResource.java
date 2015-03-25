@@ -40,6 +40,7 @@
 package ostryzhniukn.oauth2.provider.mvc;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.oauth2.provider.token.TokenStore;
 
 import javax.inject.Inject;
 import javax.ws.rs.GET;
@@ -57,13 +58,6 @@ import java.util.logging.Logger;
 @Path("jersey-hello")
 public class JerseyResource {
     private static final Logger LOGGER = Logger.getLogger(JerseyResource.class.getName());
-
-//    @Autowired
-//    private GreetingService greetingService;
-//
-////    @Autowired
-//    @Inject
-//    private DateTimeService timeService;
 
     public JerseyResource() {
         LOGGER.fine("HelloWorldResource()");

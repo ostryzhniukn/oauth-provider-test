@@ -13,7 +13,7 @@ public class JerseyConfig extends ResourceConfig {
      */
 
     public JerseyConfig() {
-        //property("contextClass", new AnnotationConfigApplicationContext(Config.class));
+
         register(RequestContextFilter.class);
         register(JerseyResource.class);
     }
