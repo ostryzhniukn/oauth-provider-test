@@ -25,11 +25,6 @@ import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 @EnableWebMvc
 public class WebMvcConfig extends WebMvcConfigurerAdapter {
 
-//    @Bean
-//    public ResourceController resourceController(){
-//        return new ResourceController();
-//    }
-
 	@Bean
 	public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
 		return new PropertySourcesPlaceholderConfigurer();
@@ -53,15 +48,6 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
 		contentViewResolver.setDefaultViews(Arrays.<View> asList(defaultView));
 		return contentViewResolver;
 	}
-
-//	@Bean
-//	public AccessConfirmationController accessConfirmationController(ClientDetailsService clientDetailsService,
-//			ApprovalStore approvalStore) {
-//		AccessConfirmationController accessConfirmationController = new AccessConfirmationController();
-//		accessConfirmationController.setClientDetailsService(clientDetailsService);
-//		accessConfirmationController.setApprovalStore(approvalStore);
-//		return accessConfirmationController;
-//	}
 
 	@Override
 	public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {

@@ -59,11 +59,6 @@ public class ServletInitializer extends AbstractDispatcherServletInitializer {
 		DelegatingFilterProxy filter = new DelegatingFilterProxy("springSecurityFilterChain");
 		filter.setContextAttribute("org.springframework.web.servlet.FrameworkServlet.CONTEXT.dispatcher");
 		servletContext.addFilter("springSecurityFilterChain", filter).addMappingForUrlPatterns(null, false, "/*");
-//
-//        DelegatingFilterProxy jerseyFilter = new DelegatingFilterProxy("jerseyFilter");
-//        jerseyFilter.setContextAttribute("org.glassfish.jersey.servlet.ServletContainer");
-//        //jerseyFilter.setServletContext(servletContext);
-//        servletContext.addFilter("jerseyFilter", jerseyFilter).addMappingForUrlPatterns(null, false, "/rest/*");
 
 	}
 	

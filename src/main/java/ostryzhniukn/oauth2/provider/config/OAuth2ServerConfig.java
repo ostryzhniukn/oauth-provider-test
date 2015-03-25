@@ -106,7 +106,7 @@ public class OAuth2ServerConfig {
 		@Qualifier("authenticationManagerBean")
 		private AuthenticationManager authenticationManager;
 
-		@Value("${webapp.redirect:http://localhost:8080/webapp/rest/redirect}")
+		@Value("${webapp.redirect:http://localhost:8090/rest/redirect}")
 		private String redirectUri;
 
 		@Override
