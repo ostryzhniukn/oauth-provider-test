@@ -119,14 +119,22 @@ public class OAuth2ServerConfig {
                         .authorizedGrantTypes("authorization_code", "implicit")
                         .authorities("ROLE_CLIENT")
                         .scopes("read", "write")
-                        .secret("secret").and()
+                        .secret("secret")
+                        .autoApprove(true)
+                    .and()
                     .withClient("webapp-with-redirect")
                         .resourceIds(RESOURCE_ID)
                         .authorizedGrantTypes("authorization_code", "implicit")
                         .authorities("ROLE_CLIENT")
                         .scopes("read", "write")
                         .secret("secret")
-                        .redirectUris(redirectUri);
+                        .redirectUris(redirectUri)
+                    .and()
+                        .withClient("trusted")
+                        .authorizedGrantTypes("password", "authorization_code", "refresh_token", "implicit")
+                        .authorities("ROLE_CLIENT", "ROLE_TRUSTED_CLIENT")
+                        .scopes("read", "write", "trust")
+                        .secret("somesecret");
 			// @formatter:on
 		}
 
