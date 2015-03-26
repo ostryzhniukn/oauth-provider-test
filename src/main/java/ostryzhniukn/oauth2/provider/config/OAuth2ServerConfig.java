@@ -71,9 +71,12 @@ public class OAuth2ServerConfig {
 				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
 			.and()
 				.requestMatchers().antMatchers("/photos/**", "/oauth/users/**", "/oauth/clients/**","/me",
-                            "/resource", "/rest/jersey-hello")
+                            "/resource", "/rest/jersey-hello", "/rest/check", "/rest/check2", "credentials")
 			.and()
 				.authorizeRequests()
+                    .antMatchers("/rest/check").permitAll()
+                    .antMatchers("/rest/check2").permitAll()
+                    .antMatchers("/rest/checkCredentials").permitAll()
                     .antMatchers("/rest/jersey-hello").access("#oauth2.hasScope('read') or (!#oauth2.isOAuth() and hasRole('ROLE_USER'))")
                     .antMatchers("/resource").access("#oauth2.hasScope('read') or (!#oauth2.isOAuth() and hasRole('ROLE_USER'))")
                     .antMatchers("/me").access("#oauth2.hasScope('read')")
@@ -112,29 +115,36 @@ public class OAuth2ServerConfig {
 		@Override
 		public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
 
-			// @formatter:off
+            // @formatter:off
 			clients.inMemory()
                     .withClient("webapp")
-                        .resourceIds(RESOURCE_ID)
-                        .authorizedGrantTypes("authorization_code", "implicit")
-                        .authorities("ROLE_CLIENT")
-                        .scopes("read", "write")
-                        .secret("secret")
-                        .autoApprove(true)
-                    .and()
+                    .resourceIds(RESOURCE_ID)
+                    .authorizedGrantTypes("authorization_code", "implicit")
+                    .authorities("ROLE_CLIENT")
+                    .scopes("read", "write")
+                    .secret("secret")
+                    .autoApprove(true)
+                        .and()
                     .withClient("webapp-with-redirect")
-                        .resourceIds(RESOURCE_ID)
-                        .authorizedGrantTypes("authorization_code", "implicit")
+                    .resourceIds(RESOURCE_ID)
+                    .authorizedGrantTypes("authorization_code", "implicit")
+                    .authorities("ROLE_CLIENT")
+                    .scopes("read", "write")
+                    .secret("secret")
+                    .redirectUris(redirectUri)
+                        .and()
+                    .withClient("trusted")
+                    .authorizedGrantTypes("password", "authorization_code", "refresh_token", "implicit")
+                    .authorities("ROLE_CLIENT", "ROLE_TRUSTED_CLIENT")
+                    .scopes("read", "write", "trust")
+                    .secret("somesecret")
+                        .and()
+                    .withClient("credentials")
+                    .resourceIds(RESOURCE_ID)
+                    .authorizedGrantTypes("authorization_code", "client_credentials")
                         .authorities("ROLE_CLIENT")
-                        .scopes("read", "write")
-                        .secret("secret")
-                        .redirectUris(redirectUri)
-                    .and()
-                        .withClient("trusted")
-                        .authorizedGrantTypes("password", "authorization_code", "refresh_token", "implicit")
-                        .authorities("ROLE_CLIENT", "ROLE_TRUSTED_CLIENT")
-                        .scopes("read", "write", "trust")
-                        .secret("somesecret");
+                        .scopes("read", "trust");
+//                        .redirectUris("http://anywhere?key=value");
 			// @formatter:on
 		}
 

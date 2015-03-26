@@ -39,14 +39,18 @@
  */
 package ostryzhniukn.oauth2.provider.mvc;
 
+import com.sun.jndi.cosnaming.IiopUrl;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.oauth2.provider.token.TokenStore;
+import ostryzhniukn.oauth2.provider.domain.Address;
+import ostryzhniukn.oauth2.provider.domain.UserRole;
 
 import javax.inject.Inject;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import java.util.logging.Logger;
 
 /**
@@ -55,7 +59,7 @@ import java.util.logging.Logger;
  *
  * @author Marko Asplund (marko.asplund at gmail.com)
  */
-@Path("jersey-hello")
+@Path("/")
 public class JerseyResource {
     private static final Logger LOGGER = Logger.getLogger(JerseyResource.class.getName());
 
@@ -64,9 +68,51 @@ public class JerseyResource {
     }
 
     @GET
+    @Path("jersey-hello")
     @Produces(MediaType.TEXT_PLAIN)
     public String getHello() {
         return "Provider Jersey resource";
+    }
+
+    private static Log logger = LogFactory.getLog(JerseyResource.class);
+
+    @GET
+    @Path("check")
+    @Produces(MediaType.TEXT_PLAIN)
+    public String check() {
+        return "Checked!";
+    }
+
+    @POST
+    @Path("check2")
+    @Produces(MediaType.TEXT_PLAIN)
+    public String check(String message) {
+        return message;
+    }
+
+    @POST
+    @Path("createAddress1")
+    @Consumes({MediaType.APPLICATION_JSON})
+    public Response createAddress1(Address address){
+        //addressService.insertAddress(address);
+        return Response.status(Response.Status.CREATED).build();
+    }
+    @POST
+    @Path("createAddress")
+    @Consumes({MediaType.APPLICATION_JSON})
+    public Response createAddress(Address address){
+        //addressService.insertAddress(address);
+        address.setCity("I-F");
+        return Response.status(Response.Status.CREATED).entity(address).build();
+    }
+
+    @POST
+    @Path("userRole")
+    @Consumes({MediaType.APPLICATION_JSON})
+    public Response userRole(UserRole userRole){
+        //addressService.insertAddress(address);
+        userRole.setUser("User with role");
+        return Response.status(Response.Status.CREATED).entity(userRole).build();
     }
 
 }
