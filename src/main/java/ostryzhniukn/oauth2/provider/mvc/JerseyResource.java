@@ -39,15 +39,10 @@
  */
 package ostryzhniukn.oauth2.provider.mvc;
 
-import com.sun.jndi.cosnaming.IiopUrl;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.oauth2.provider.token.TokenStore;
 import ostryzhniukn.oauth2.provider.domain.Address;
 import ostryzhniukn.oauth2.provider.domain.UserRole;
-
-import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
