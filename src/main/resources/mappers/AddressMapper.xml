@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.softserveinc.if052_restful.mappers.AddressMapper">
+
+    <!-- Result map for representation of address with water meters -->
+    <resultMap id="AddressResult" type="Address">
+        <id property="addressId" column="address_id"/>
+        <result property="city" column="city"/>
+        <result property="street" column="street"/>
+        <result property="building" column="building"/>
+        <result property="apartment" column="apartment"/>
+        <association property="user"
+                     resultMap="com.softserveinc.if052_restful.mappers.UserMapper.UserSimpleResult"/>
+        <collection property="waterMeters" column="address_id"
+                    javaType="ArrayList" ofType="WaterMeter"
+                    resultMap="com.softserveinc.if052_restful.mappers.WaterMeterMapper.WaterMeterSimpleResult"
+                columnPrefix="watermeter_"/>
+    </resultMap>
+
+    <!-- Result map for representation of address -->
+    <resultMap id="AddressSimpleResult" type="Address">
+        <id property="addressId" column="address_id" />
+        <result property="city" column="city" />
+        <result property="street" column="street" />
+        <result property="building" column="building" />
+        <result property="apartment" column="apartment" />
+    </resultMap>
+
+
+
+    <select id="getAddressById" parameterType="int" resultMap="AddressResult">
+        SELECT
+        a.address_id,
+        a.city,
+        a.street,
+        a.building,
+        a.apartment,
+        a.user_id,
+        c.user_id,
+        c.name,
+        c.surname,
+        c.middle_name,
+        c.login,
+        c.password,
+        c.email,
+        wm.water_meter_id as watermeter_water_meter_id,
+        wm.name as watermeter_name,
+        wm.description as watermeter_description,
+        wm.tariff as watermeter_tariff,
+        mt.meter_type_id AS watermeter_meter_type_id,
+        mt.type AS watermeter_type
+        FROM address a
+        LEFT OUTER JOIN watermeter wm ON a.address_id = wm.address_id
+        LEFT OUTER JOIN consumer c ON a.user_id = c.user_id
+        LEFT OUTER JOIN meter_type mt ON wm.meter_type_id = mt.meter_type_id
+        WHERE a.address_id = #{addressId}
+    </select>
+
+    <select id="getAddressesByUserId" parameterType="int" resultMap="AddressSimpleResult">
+        SELECT
+        a.address_id,
+        a.city,
+        a.street,
+        a.building,
+        a.apartment,
+        a.user_id
+        FROM address a
+        WHERE a.user_id = #{userId}
+    </select>
+
+    <select id="getAllAddresses" resultMap="AddressSimpleResult">
+        SELECT
+        a.address_id,
+        a.city,
+        a.street,
+        a.building,
+        a.apartment
+        FROM address a
+    </select>
+
+    <insert id="insertAddress" parameterType="Address" useGeneratedKeys="true" keyProperty="addressId">
+        INSERT INTO address(city, street, building, apartment, user_id)
+        VALUES(#{city}, #{street}, #{building}, #{apartment}, #{user.userId})
+    </insert>
+
+    <update id="updateAddress" parameterType="Address">
+        UPDATE address
+        SET
+        city= #{city},
+        street = #{street},
+        building = #{building},
+        apartment = #{apartment}
+        WHERE address_id = #{addressId}
+    </update>
+
+    <delete id="deleteAddress" parameterType="int">
+        DELETE FROM address WHERE address_id = #{addressId}
+    </delete>
+
+</mapper>
