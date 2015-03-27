@@ -1,12 +1,16 @@
 package com.softserveinc.if052_restful.resource;
 
+import com.softserveinc.mvc.JerseyResource;
 import org.glassfish.jersey.jackson.JacksonFeature;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.server.spring.scope.RequestContextFilter;
 
+import javax.ws.rs.ApplicationPath;
+
 /**
  * Created by Nazar Ostryzhniuk on 2/3/15.
  */
+@ApplicationPath("/rest/*")
 public class Application extends ResourceConfig {
     /**
      * Register JAX-RS application components.
@@ -33,7 +37,7 @@ public class Application extends ResourceConfig {
 
         register(MeterTypeResource.class);
 
-
+        register(JerseyResource.class);
     }
 
 }
