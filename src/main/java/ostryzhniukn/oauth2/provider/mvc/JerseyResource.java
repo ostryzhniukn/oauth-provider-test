@@ -110,4 +110,14 @@ public class JerseyResource {
         return Response.status(Response.Status.CREATED).entity(userRole).build();
     }
 
+    @GET
+    @Path("exchange")
+    @Consumes({MediaType.APPLICATION_JSON})
+    public Response exchange(){
+        //addressService.insertAddress(address);
+        UserRole userRole = new UserRole("USER");
+        userRole.setUser("User from exchange");
+        return Response.status(Response.Status.CREATED).entity(userRole).build();
+    }
+
 }
