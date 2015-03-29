@@ -75,7 +75,8 @@ public class OAuth2ServerConfig {
 			.and()
 				.authorizeRequests()
                     .antMatchers("/rest/check").permitAll()
-                    .antMatchers("/rest/check2").permitAll()
+                    .antMatchers("/rest/check2").access("#oauth2.hasScope('read')") //works as you expect too
+//                    .antMatchers("/rest/check2").access("#oauth2.hasScope('noread')") works as you expect
                     .antMatchers("/rest/checkCredentials").permitAll()
                     .antMatchers("/rest/jersey-hello").access("#oauth2.hasScope('read') or (!#oauth2.isOAuth() and hasRole('ROLE_USER'))")
                     .antMatchers("/resource").access("#oauth2.hasScope('read') or (!#oauth2.isOAuth() and hasRole('ROLE_USER'))")

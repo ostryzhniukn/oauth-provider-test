@@ -41,6 +41,7 @@ package ostryzhniukn.oauth2.provider.mvc;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.web.bind.annotation.RequestParam;
 import ostryzhniukn.oauth2.provider.domain.Address;
 import ostryzhniukn.oauth2.provider.domain.UserRole;
 import javax.ws.rs.*;
@@ -61,6 +62,13 @@ public class JerseyResource {
     public JerseyResource() {
         LOGGER.fine("HelloWorldResource()");
     }
+
+    @GET
+    @Path("param/{id}")
+    public String param(@PathParam("id") Integer id){
+        return "parameter" + id.toString();
+    }
+
 
     @GET
     @Path("jersey-hello")
