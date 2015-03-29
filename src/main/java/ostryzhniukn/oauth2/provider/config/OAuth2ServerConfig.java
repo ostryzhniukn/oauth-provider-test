@@ -71,12 +71,25 @@ public class OAuth2ServerConfig {
 				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
 			.and()
 				.requestMatchers().antMatchers("/photos/**", "/oauth/users/**", "/oauth/clients/**","/me",
-                            "/resource", "/rest/jersey-hello", "/rest/check", "/rest/check2", "credentials")
+                            "/resource", "/rest/jersey-hello", "/rest/check", "/rest/check2", "/rest/checkCredentials",
+                            "/rest/**", "/rest/param/**")
 			.and()
 				.authorizeRequests()
+
+                    .antMatchers("/rest/param/**").access("#oauth2.hasScope('read')") //works
+//                    .antMatchers("/rest/param/**").access("#oauth2.hasScope('noread')") //works
+//                    .antMatchers("/rest/param/**").permitAll() //works
+//                    .antMatchers("/rest/param/**").denyAll() //works
+
+//                    .antMatchers("/rest/**").access("#oauth2.hasScope('noread')") //works
+                    .antMatchers("/rest/**").access("#oauth2.hasScope('read')") //works
+//                    .antMatchers("/rest/**").denyAll() //works
+//                    .antMatchers("/rest/**").permitAll() //works
+
                     .antMatchers("/rest/check").permitAll()
                     .antMatchers("/rest/check2").access("#oauth2.hasScope('read')") //works as you expect too
 //                    .antMatchers("/rest/check2").access("#oauth2.hasScope('noread')") works as you expect
+
                     .antMatchers("/rest/checkCredentials").permitAll()
                     .antMatchers("/rest/jersey-hello").access("#oauth2.hasScope('read') or (!#oauth2.isOAuth() and hasRole('ROLE_USER'))")
                     .antMatchers("/resource").access("#oauth2.hasScope('read') or (!#oauth2.isOAuth() and hasRole('ROLE_USER'))")
@@ -86,11 +99,11 @@ public class OAuth2ServerConfig {
 					.antMatchers("/photos/user/**").access("#oauth2.hasScope('trust')")					
 					.antMatchers("/photos/**").access("#oauth2.hasScope('read') or (!#oauth2.isOAuth() and hasRole('ROLE_USER'))")
 					.regexMatchers(HttpMethod.DELETE, "/oauth/users/([^/].*?)/tokens/.*")
-						.access("#oauth2.clientHasRole('ROLE_CLIENT') and (hasRole('ROLE_USER') or #oauth2.isClient()) and #oauth2.hasScope('write')")
+                    .access("#oauth2.clientHasRole('ROLE_CLIENT') and (hasRole('ROLE_USER') or #oauth2.isClient()) and #oauth2.hasScope('write')")
 					.regexMatchers(HttpMethod.GET, "/oauth/clients/([^/].*?)/users/.*")
-						.access("#oauth2.clientHasRole('ROLE_CLIENT') and (hasRole('ROLE_USER') or #oauth2.isClient()) and #oauth2.hasScope('read')")
+                    .access("#oauth2.clientHasRole('ROLE_CLIENT') and (hasRole('ROLE_USER') or #oauth2.isClient()) and #oauth2.hasScope('read')")
 					.regexMatchers(HttpMethod.GET, "/oauth/clients/.*")
-						.access("#oauth2.clientHasRole('ROLE_CLIENT') and #oauth2.isClient() and #oauth2.hasScope('read')");
+                    .access("#oauth2.clientHasRole('ROLE_CLIENT') and #oauth2.isClient() and #oauth2.hasScope('read')");
 			// @formatter:on
 		}
 

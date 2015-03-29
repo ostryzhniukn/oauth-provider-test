@@ -66,7 +66,7 @@ public class JerseyResource {
     @GET
     @Path("param/{id}")
     public String param(@PathParam("id") Integer id){
-        return "parameter" + id.toString();
+        return "id=" + id.toString();
     }
 
 
